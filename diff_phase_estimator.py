@@ -81,7 +81,7 @@ def get_drizzly_phiDPs(radar, R_min, R_max):
     filtered_radar = clutter_filter(radar)
     Zdr, _,_ = get_range_restricted_data(radar, 'differential_reflectivity', R_min, R_max, 1)
     Rhv, _,_ = get_range_restricted_data(radar, 'cross_correlation_ratio', R_min, R_max, 1)
-    PhiDP, _,_ = get_range_restricted_data(radar, 'differential_phase', R_min, R_max, 1)
+    PhiDP, ranges ,azimuths = get_range_restricted_data(radar, 'differential_phase', R_min, R_max, 1)
 
     full_drizzle_conditions = np.array(
     [
@@ -94,7 +94,7 @@ def get_drizzly_phiDPs(radar, R_min, R_max):
     drizzle_mask = np.min(full_drizzle_conditions, axis = 0)
     PhiDP[~drizzle_mask] = np.nan
 
-    return PhiDP
+    return PhiDP, ranges, azimuths
 
     
     
