@@ -1,4 +1,3 @@
-import matplotlib.pyplot as plt
 import numpy
 import xarray
 import pandas as pd
